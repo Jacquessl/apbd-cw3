@@ -18,10 +18,14 @@ namespace ConsoleApplication1
             // Console.WriteLine(con2.getSerial());
             // Console.WriteLine(con3.getSerial());
             // Console.WriteLine(con4.getSerial());
+            var ship = new Ship(10, 10, 1000);
             var con = new CoolingContainer(100, 100, 100, 100, PossibleProducts.Banana);
             string numerString = Convert.ToString(PossibleProducts.Banana);
-            Console.WriteLine("String reprezentujący numer: " + numerString);
-            Console.WriteLine(con.Temp);
+            ship.AddContainer(con);
+            ship.RemoveContainer(con.SerialNumber);
+
+            //Console.WriteLine("String reprezentujący numer: " + numerString);
+            //Console.WriteLine(con.Temp);
             //con.Load(1000);
         }
     }

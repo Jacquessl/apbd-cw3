@@ -45,5 +45,10 @@ namespace ConsoleApplication1
         {
             Console.WriteLine($"{msg} - {SerialNumber}");
         }
+
+        public override string ToString()
+        {
+            return $"Liquid Container {SerialNumber}\n";
+        }
     }
 }

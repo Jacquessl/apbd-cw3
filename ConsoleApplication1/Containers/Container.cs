@@ -40,5 +40,11 @@ namespace ConsoleApplication1
 
             CargoWeight += cargoWeight;
         }
+
+        public void ChangeShip(Ship nowShip, Ship targetShip)
+        {
+            nowShip.RemoveContainer(SerialNumber);
+            targetShip.AddContainer(this);
+        }
     }
 }
