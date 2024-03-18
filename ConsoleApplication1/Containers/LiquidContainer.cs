@@ -8,14 +8,14 @@ namespace ConsoleApplication1
         public PossibleLiquidProducts Product { get; set; }
         public bool Dangerous { get; private set; }
         public LiquidContainer(double cargoWeight, double containerDepth, 
-            double containerHeight, double containerWeight, PossibleLiquidProducts product) : base(cargoWeight, "L", 
-            containerDepth, containerHeight, containerHeight)
+            double containerHeight, double containerWeight, double cargoMax, PossibleLiquidProducts product) : base(cargoWeight, "L", 
+            containerDepth, containerHeight, containerHeight, cargoMax)
         {
             Product = product;
             setDangerous();
         }
 
-        private void setDangerous()
+        public void setDangerous()
         {
             if ((int)Product % 2 == 0)
             {
@@ -29,6 +29,7 @@ namespace ConsoleApplication1
         
         public override void Load(double cargoWeight)
         {
+            Console.WriteLine("tu sie wywolalo");
             if (Dangerous && (cargoWeight+CargoWeight) > CargoMax*0.5)
             {
                 NotifyHazard("Dangerous liquid product over 50% container capacity");

@@ -11,13 +11,14 @@ namespace ConsoleApplication1
         public double ContainerDepth { get; set; }
         public double CargoMax { get; set; }
         protected Container(double cargoWeight, string containerType, double containerDepth, 
-            double containerHeight, double containerWeight)
+            double containerHeight, double containerWeight, double cargoMax)
         {
             CargoWeight = cargoWeight;
             ContainerType = containerType;
             ContainerHeight = containerHeight;
             ContainerWeight = containerWeight;
             ContainerDepth = containerDepth;
+            CargoMax = cargoMax;
             generateSerialNumber();
         }
 

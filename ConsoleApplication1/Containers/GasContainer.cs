@@ -5,8 +5,8 @@ namespace ConsoleApplication1
     public class GasContainer : Container, IHazardNotifier
     {
         public GasContainer(double cargoWeight, double containerDepth, 
-            double containerHeight, double containerWeight) : base(cargoWeight, "G", 
-            containerDepth, containerHeight, containerWeight)
+            double containerHeight, double containerWeight, double cargoMax) : base(cargoWeight, "G", 
+            containerDepth, containerHeight, containerWeight, cargoMax)
         {
             
         }

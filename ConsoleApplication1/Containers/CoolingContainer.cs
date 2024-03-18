@@ -5,14 +5,14 @@ namespace ConsoleApplication1
         public PossibleProducts Product { get; set; }
         public double Temp { get; private set; }
         public CoolingContainer(double cargoWeight, double containerDepth, 
-            double containerHeight, double containerWeight, PossibleProducts product) : base(cargoWeight, 
-            "C", containerDepth, containerHeight, containerWeight)
+            double containerHeight, double containerWeight, double cargoMax,PossibleProducts product) : base(cargoWeight, 
+            "C", containerDepth, containerHeight, containerWeight, cargoMax)
         {
             Product = product;
             SetTemp();
         }
 
-        private void SetTemp()
+        public void SetTemp()
         {
             Temp = (double)((int)Product)/10;
         }

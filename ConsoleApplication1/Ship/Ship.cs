@@ -24,10 +24,14 @@ namespace ConsoleApplication1
 
         public void AddContainer(Container con)
         {
-            if (Containers.Count < MaxContainers && _actualCargoWeight + con.CargoWeight < MaxCargoWeight)
+            if (Containers.Count < MaxContainers && _actualCargoWeight + con.CargoWeight + con.ContainerWeight < MaxCargoWeight)
             {
                 Containers.Add(con);
-                _actualCargoWeight += con.CargoWeight;
+                _actualCargoWeight += con.CargoWeight + con.ContainerWeight;
+            }
+            else
+            {
+                throw new Exception();
             }
         }
 
