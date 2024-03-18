@@ -381,6 +381,7 @@ public class UserInterface
         if (int.TryParse(ChoiceStr, out Choice))
         {
             Ships[ShipNumber].AddContainer(UnusedContainers[Choice-1]);
+            UnusedContainers.Remove(UnusedContainers[Choice - 1]);
         }
         else
         {
@@ -745,7 +746,7 @@ public class UserInterface
                           "Cooling Container : 1\n" +
                           "Gas Container : 2 \n" +
                           "Liquid Container : 3\n" +
-                          "Go back : 4" +
+                          "Go back : 4\n" +
                           "Choose type by inputing its index: ");
         var choiceStr = Console.ReadLine();
         int choice;
