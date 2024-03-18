@@ -410,12 +410,12 @@ public class UserInterface
     }
     private void EditContainer(int? ShipNumber, int? conIndex)
     {
-        Console.WriteLine("Containers: ");
         int counter = 0;
         string ChocieStr = "-1";
             
         if (ShipNumber.HasValue)
         {
+            Console.WriteLine("Containers: ");
             foreach (var con in Ships[ShipNumber.Value].Containers)
             {
                 Console.WriteLine($"{con.SerialNumber} : {++counter}");
@@ -515,6 +515,7 @@ public class UserInterface
                         if (double.TryParse(Choice2abStr, out Choice2ab))
                         {
                             con.CargoMax = Choice2ab;
+                            con.CheckWeight();
                         }
                         else
                         {

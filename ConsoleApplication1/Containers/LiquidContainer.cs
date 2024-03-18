@@ -13,6 +13,7 @@ namespace ConsoleApplication1
         {
             Product = product;
             setDangerous();
+            CheckWeight();
         }
 
         public void setDangerous()
@@ -29,17 +30,32 @@ namespace ConsoleApplication1
         
         public override void Load(double cargoWeight)
         {
-            Console.WriteLine("tu sie wywolalo");
-            if (Dangerous && (cargoWeight+CargoWeight) > CargoMax*0.5)
+            if (Dangerous && (cargoWeight+CargoWeight) > (CargoMax*0.5))
             {
                 NotifyHazard("Dangerous liquid product over 50% container capacity");
                 throw new OverfillException();
-            }else if (cargoWeight + CargoWeight > CargoMax * 0.9)
+            }
+            if ((cargoWeight + CargoWeight) > (CargoMax * 0.9))
             {
                 NotifyHazard("Liquid product over 90% container capacity");
                 throw new OverfillException();
             }
             base.Load(cargoWeight);
+        }
+
+        public override void CheckWeight()
+        {
+            if (Dangerous && (CargoWeight) > (CargoMax*0.5))
+            {
+                NotifyHazard("Dangerous liquid product over 50% container capacity");
+                throw new OverfillException();
+            }
+            if ((CargoWeight) > (CargoMax * 0.9))
+            {
+                NotifyHazard("Liquid product over 90% container capacity");
+                throw new OverfillException();
+            }
+            base.CheckWeight();
         }
 
         public void NotifyHazard(string msg)

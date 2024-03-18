@@ -20,6 +20,7 @@ namespace ConsoleApplication1
             ContainerDepth = containerDepth;
             CargoMax = cargoMax;
             generateSerialNumber();
+            CheckWeight();
         }
 
         private void generateSerialNumber()
@@ -30,6 +31,15 @@ namespace ConsoleApplication1
         public virtual void Unload()
         {
             CargoWeight = 0;
+        }
+
+        public virtual void CheckWeight()
+        {
+            if (CargoWeight > CargoMax)
+            {
+                Unload();
+                throw new OverfillException();
+            }
         }
 
         public virtual void Load(double cargoWeight)

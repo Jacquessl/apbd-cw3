@@ -11,6 +11,8 @@ namespace ConsoleApplication1
             
         }
 
+        
+
         public void NotifyHazard(string msg)
         {
             Console.WriteLine($"{msg} - {SerialNumber}");
