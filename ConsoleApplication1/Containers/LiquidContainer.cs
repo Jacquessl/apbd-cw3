@@ -17,7 +17,7 @@ namespace ConsoleApplication1
 
         private void setDangerous()
         {
-            if ((int)Product == 1)
+            if ((int)Product % 2 == 0)
             {
                 Dangerous = true;
             }
@@ -48,7 +48,16 @@ namespace ConsoleApplication1
 
         public override string ToString()
         {
-            return $"Liquid Container {SerialNumber}\n";
+            string result = $"Liquid Container {SerialNumber}\n" +
+                            $"Height {ContainerHeight}\n" +
+                            $"Depth {ContainerDepth}\n" +
+                            $"Weight {ContainerWeight}\n" +
+                            $"Maximum Cargo Weight {CargoMax}\n" +
+                            $"Cargo Weight {CargoWeight}\n" +
+                            $"Product {Product.ToString()}";
+            result += Dangerous ? " (dangerous)" : "";
+            return result;
+
         }
     }
 }

@@ -16,5 +16,17 @@ namespace ConsoleApplication1
         {
             Temp = (double)((int)Product)/10;
         }
+
+        public override string ToString()
+        {
+            return $"Liquid Container {SerialNumber}\n" +
+                $"Height {ContainerHeight}\n" +
+                $"Depth {ContainerDepth}\n" +
+                $"Weight {ContainerWeight}\n" +
+                $"Maximum Cargo Weight {CargoMax}\n" +
+                $"Cargo Weight {CargoWeight}\n" +
+                $"Product {Product.ToString()}\n" +
+                $"Temperature {Temp}";
+        }
     }
 }

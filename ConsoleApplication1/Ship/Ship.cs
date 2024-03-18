@@ -6,12 +6,15 @@ namespace ConsoleApplication1
     public class Ship
     {
         public List<Container> Containers = new();
+        public static int ShipCounter = 0;
+        public int Number { get; set; }
 
         public Ship(double speed, int maxContainers, double maxCargoWeight)
         {
             Speed = speed;
             MaxContainers = maxContainers;
             MaxCargoWeight = maxCargoWeight;
+            Number = ++ShipCounter;
         }
 
         private double _actualCargoWeight = 0;
@@ -47,7 +50,6 @@ namespace ConsoleApplication1
                     break;
                 }
             }
-            Console.WriteLine(Containers.Count);
         }
 
         public void ReplaceContainer(string name, Container con)
@@ -66,6 +68,22 @@ namespace ConsoleApplication1
                     break;
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            string result = $"Ship {Number}\n" +
+                $"Speed {Speed}\n" +
+                $"Cargo Weight {_actualCargoWeight}\n" +
+                $"Max Cargo Weight {MaxCargoWeight}\n" +
+                $"Max Containers {MaxContainers}\n";
+            int Counter = 0;
+            foreach (Container con in Containers)
+            {
+                Counter++;
+                result += $"{Counter}. {con.SerialNumber}\n";
+            }
+            return result;
         }
     }
 }

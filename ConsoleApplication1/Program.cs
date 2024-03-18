@@ -19,10 +19,20 @@ namespace ConsoleApplication1
             // Console.WriteLine(con3.getSerial());
             // Console.WriteLine(con4.getSerial());
             var ship = new Ship(10, 10, 1000);
+            var ship2 = new Ship(10, 10, 1000);
             var con = new CoolingContainer(100, 100, 100, 100, PossibleProducts.Banana);
-            string numerString = Convert.ToString(PossibleProducts.Banana);
+            var con2 = new LiquidContainer(100, 100, 100, 100, PossibleLiquidProducts.Chlorine);
+            var con3 = new LiquidContainer(100, 100, 100, 100, PossibleLiquidProducts.Wine);
+            // Console.WriteLine(con2);
+            // Console.WriteLine(con3);
             ship.AddContainer(con);
+            ship.AddContainer(con2);
+            ship.AddContainer(con3);
+            ship.ChangeShip(ship2, con2.SerialNumber);
             ship.RemoveContainer(con.SerialNumber);
+            con2.Load(100);
+            Console.WriteLine(ship);
+            Console.WriteLine(ship2);
 
             //Console.WriteLine("String reprezentujący numer: " + numerString);
             //Console.WriteLine(con.Temp);

@@ -45,11 +45,11 @@
         <Compile Include="Containers\CoolingContainer.cs" />
         <Compile Include="Containers\GasContainer.cs" />
         <Compile Include="Containers\LiquidContainer.cs" />
-        <Compile Include="Containers\PossibleLiquidProducts.cs" />
-        <Compile Include="Containers\PossibleProducts.cs" />
         <Compile Include="Exceptions\OverfillException.cs" />
         <Compile Include="Interfaces\IContainer.cs" />
         <Compile Include="Interfaces\IHazardNotifier.cs" />
+        <Compile Include="Products\PossibleLiquidProducts.cs" />
+        <Compile Include="Products\PossibleProducts.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="Ship\Ship.cs" />

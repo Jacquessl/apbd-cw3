@@ -6,7 +6,7 @@ namespace ConsoleApplication1
     {
         public GasContainer(double cargoWeight, double containerDepth, 
             double containerHeight, double containerWeight) : base(cargoWeight, "G", 
-            containerDepth, containerHeight, containerHeight)
+            containerDepth, containerHeight, containerWeight)
         {
             
         }
@@ -29,6 +29,16 @@ namespace ConsoleApplication1
             }
 
             CargoWeight += cargoWeight;
+        }
+
+        public override string ToString()
+        {
+            return $"Liquid Container {SerialNumber}\n" +
+                   $"Height {ContainerHeight}\n" +
+                   $"Depth {ContainerDepth}\n" +
+                   $"Weight {ContainerWeight}\n" +
+                   $"Maximum Cargo Weight {CargoMax}\n" +
+                   $"Cargo Weight {CargoWeight}\n";
         }
     }
 }
