@@ -50,7 +50,15 @@ public class UserInterface
                         ShowShips();
                         break;
                     case 4:
-                        CreateContainer();
+                        try
+                        {
+                            CreateContainer();
+                        }
+                        catch (Exception)
+                        {
+                            WrongAnswer();
+                        }
+
                         break;
                     case 5:
                         try
@@ -219,7 +227,9 @@ public class UserInterface
                           "4 - Add Containers\n" +
                           "5 - Replace Container\n" +
                           "6 - Place Container on another Ship\n" +
-                          "7 - Back\n");
+                          "7 - Delete Ship\n" +
+                          "8 - Show Containers\n" +
+                          "9 - Back\n");
         string ChoiceStr = Console.ReadLine();
         if (int.TryParse(ChoiceStr, out Choice))
         {
@@ -244,6 +254,12 @@ public class UserInterface
                     ChangeShips(ShipNumber);
                     break;
                 case 7:
+                    DeleteShip(ShipNumber);
+                    break;
+                case 8:
+                    ShowContainers(ShipNumber);
+                    break;
+                case 9:
                     ChoseShipToEdit();
                     break;
                 default:
@@ -251,6 +267,39 @@ public class UserInterface
                     break;
             }
         }
+    }
+
+    private void ShowContainers(int ShipNumber)
+    {
+        Console.WriteLine("Containers: ");
+        int counter = 0;
+        foreach (var con in Ships[ShipNumber].Containers)
+        {
+            Console.WriteLine($"{con.SerialNumber} : {++counter}");
+        }
+        Console.WriteLine("Choose container's index for more info: ");
+        string ChocieStr = Console.ReadLine();
+        int Choice;
+        if (int.TryParse(ChocieStr, out Choice))
+        {
+            Console.WriteLine(Ships[ShipNumber].Containers[Choice - 1]);
+            Console.WriteLine("Press Enter to go back to Main Menu");
+            Console.ReadLine();
+        }
+        else
+        {
+            WrongAnswer();
+        }
+    }
+
+    private void DeleteShip(int ShipNumber)
+    {
+        foreach (var con in Ships[ShipNumber].Containers)
+        {
+            UnusedContainers.Add(con);
+        }
+
+        Ships.Remove(Ships[ShipNumber]);
     }
 
     private void ChangeShips(int ShipNumber)
@@ -448,19 +497,20 @@ public class UserInterface
                               "3 - Weight\n" +
                               "4 - Maximum Cargo Weight\n" +
                               "5 - Load Cargo\n" +
-                              "6 - Unload Cargo");
+                              "6 - Unload Cargo\n" +
+                              "7 - Delete Container");
             switch (con.ContainerType)
             {
                 case "C":
-                    Console.WriteLine("7 - Product\n" +
-                                      "8 - Back\n");
+                    Console.WriteLine("8 - Product\n" +
+                                      "9 - Back\n");
                     break;
                 case "G":
-                    Console.WriteLine("7 - Back\n");
+                    Console.WriteLine("8 - Back\n");
                     break;
                 case "L":
-                    Console.WriteLine("7 - Product\n" +
-                                      "8 - Back\n");
+                    Console.WriteLine("8 - Product\n" +
+                                      "9 - Back\n");
                     break;
             }
 
@@ -536,6 +586,17 @@ public class UserInterface
                         con.Unload();
                         break;
                     case 7:
+                        if (ShipNumber.HasValue)
+                        {
+                            Ships[ShipNumber.Value].Containers.Remove(con);
+                        }
+                        else
+                        {
+                            UnusedContainers.Remove(con);
+                        }
+
+                        break;
+                    case 8:
                         if (con.ContainerType == "C")
                         {
                             Console.WriteLine("Possible Products: ");
@@ -603,7 +664,7 @@ public class UserInterface
                             }
                         }
                         break;
-                    case 8:
+                    case 9:
                         if (con.ContainerType == "L" || con.ContainerType == "C")
                         {
                             if (ShipNumber.HasValue)
@@ -649,6 +710,7 @@ public class UserInterface
         int Choice;
         if (int.TryParse(ChocieStr, out Choice))
         {
+            UnusedContainers.Add(Ships[ShipNumber].Containers[Choice-1]);
             Ships[ShipNumber].Containers.Remove(Ships[ShipNumber].Containers[Choice-1]);
         }
         else
